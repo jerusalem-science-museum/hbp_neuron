@@ -14,6 +14,7 @@ BASIC_PATH = os.path.abspath(os.path.dirname(os.path.dirname(
 sys.path.append(BASIC_PATH)
 
 import pygame
+import screeninfo
 from tkinter import *
 from pathlib import Path
 from src.slide import Slide
@@ -155,7 +156,8 @@ class NeuronWindow(Frame):
         # remove window border and put it on top
         self.master.overrideredirect(True)
         self.master.attributes('-topmost', True)
-        self.master.geometry('+{}+{}'.format(1920, 0))
+        self.master.geometry('+{}+{}'.format(
+            max(m.x for m in screeninfo.get_monitors()), 0))
 
         # exit on escape key press
         self.bind_all('<Escape>', self.exit)
