@@ -52,6 +52,7 @@ class GifPlayer(object):
         self.play_count = 0
 
     def play(self, gif, times=1, after_cb=None):
+        self.canvas.delete(ALL)
         self.after_cb = after_cb
         self.stop()
         self.current_frame = 0
@@ -62,7 +63,6 @@ class GifPlayer(object):
     def _play(self):
         if self.play_count == 0:
             return
-        self.canvas.delete(ALL)
         self.canvas.create_image(0, 0, anchor=NW, image=self.current_gif.frames[self.current_frame])
 
         self.current_frame += 1
